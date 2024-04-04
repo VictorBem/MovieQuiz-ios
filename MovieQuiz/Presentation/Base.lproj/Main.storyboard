@@ -28,7 +28,7 @@
                                                 <attributedString key="attributedText">
                                                     <fragment content="Вопрос:">
                                                         <attributes>
-                                                            <color key="NSColor" name="YS White"/>
+                                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                             <font key="NSFont" size="20" name="YSDisplay-Medium"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
@@ -63,7 +63,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAW-QU-6nw" userLabel="Question Label">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAW-QU-6nw" userLabel="Question Label">
                                         <rect key="frame" x="0.0" y="624.5" width="374" height="99.5"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Рейтинг этого фильма меньше, чем 5?">
@@ -112,7 +112,6 @@
                                                             <attributes>
                                                                 <color key="NSColor" name="YS Black"/>
                                                                 <font key="NSFont" size="20" name="YSDisplay-Medium"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -148,7 +147,10 @@
                     <connections>
                         <outlet property="counterLabel" destination="aeK-kn-AbQ" id="4bo-Yk-pUw"/>
                         <outlet property="imageView" destination="Duh-z1-LdF" id="VGS-IW-eCA"/>
+                        <outlet property="noButton" destination="8PW-ck-rPP" id="QdM-QA-5Zt"/>
                         <outlet property="textLabel" destination="hAW-QU-6nw" id="Qu9-Mb-n80"/>
+                        <outlet property="titleLabel" destination="e5d-Dt-ffW" id="nJa-8W-KnE"/>
+                        <outlet property="yesButton" destination="nkf-Ni-h4I" id="Ydh-P8-W22"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

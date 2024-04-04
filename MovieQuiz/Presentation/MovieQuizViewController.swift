@@ -34,6 +34,10 @@ final class MovieQuizViewController: UIViewController {
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var textLabel: UILabel!
     @IBOutlet private var counterLabel: UILabel!
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet var noButton: UIButton!
+    @IBOutlet var yesButton: UIButton!
+    private var currentButton: UIButton!
     
     private let questions: [QuizQuestion] = [
         QuizQuestion(image: "The Godfather", text: "Рейтинг этого фильма больше чем 6?", correctAnswer: true),
@@ -54,16 +58,25 @@ final class MovieQuizViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        textLabel.textColor = UIColor.ypWhite
+        counterLabel.textColor = UIColor.ypWhite
+        titleLabel.textColor = UIColor.ypWhite
+        noButton.titleLabel?.textColor = UIColor.ypBlack
+        yesButton.titleLabel?.textColor = UIColor.ypBlack
+
         let currentQuestion = questions[currentQuestionIndex]
         show(quiz: convert(model: currentQuestion))
     }
     
     @IBAction private func noButtonClicked(_ sender: UIButton) {
+        currentButton = sender
         showAnswerResult(isCorrect: !questions[currentQuestionIndex].correctAnswer)
     }
     
     
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
+        currentButton = sender
         showAnswerResult(isCorrect: questions[currentQuestionIndex].correctAnswer)
     }
     
@@ -81,7 +94,7 @@ final class MovieQuizViewController: UIViewController {
     }
     
     private func showAnswerResult(isCorrect: Bool) {
-        // метод красит рамку
+        currentButton.isEnabled = false
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
         imageView.layer.cornerRadius = 20
@@ -92,6 +105,7 @@ final class MovieQuizViewController: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.showNextQuestionOrResults()
+            self.currentButton.isEnabled = true
         }
         
     }
