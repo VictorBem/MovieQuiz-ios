@@ -59,6 +59,8 @@
 		8F4738332848DE46005DF65E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				57D5F6142BC0A40600D62252 /* YS Display-Bold.ttf */,
+				57D5F6132BC0A40600D62252 /* YS Display-Medium.ttf */,
 				AD1ABABC2831907F00B3E448 /* LaunchScreen.storyboard */,
 				AD1ABABA2831907F00B3E448 /* Assets.xcassets */,
 				AD1ABABF2831907F00B3E448 /* Info.plist */,
@@ -69,8 +71,6 @@
 		AD1ABAA52831907B00B3E448 = {
 			isa = PBXGroup;
 			children = (
-				57D5F6142BC0A40600D62252 /* YS Display-Bold.ttf */,
-				57D5F6132BC0A40600D62252 /* YS Display-Medium.ttf */,
 				AD1ABAB02831907B00B3E448 /* MovieQuiz */,
 				AD1ABAAF2831907B00B3E448 /* Products */,
 			);
