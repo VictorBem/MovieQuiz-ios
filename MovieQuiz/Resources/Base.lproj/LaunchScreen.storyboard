@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_7" orientation="portrait" appearance="dark"/>
+    <device id="retina4_0" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
@@ -13,20 +13,20 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aL3-ZQ-qIJ">
-                                <rect key="frame" x="0.0" y="47" width="428" height="845"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="bqI-oh-3ba">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="aL3-ZQ-qIJ" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="21O-UZ-N5d"/>
-                            <constraint firstItem="aL3-ZQ-qIJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="6sr-Df-FoO"/>
-                            <constraint firstItem="aL3-ZQ-qIJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="A5g-Ju-nmT"/>
-                            <constraint firstItem="aL3-ZQ-qIJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="VAX-31-rny"/>
+                            <constraint firstItem="bqI-oh-3ba" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailing" id="7WO-hg-1DR"/>
+                            <constraint firstItem="bqI-oh-3ba" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Ieh-lK-XfW"/>
+                            <constraint firstItem="bqI-oh-3ba" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="RQz-bB-7T7"/>
+                            <constraint firstItem="bqI-oh-3ba" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="bottom" id="TBx-6F-Kaz"/>
                         </constraints>
                     </view>
                 </viewController>
