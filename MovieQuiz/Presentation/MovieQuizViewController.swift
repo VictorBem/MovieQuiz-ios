@@ -64,6 +64,14 @@ final class MovieQuizViewController: UIViewController {
         titleLabel.textColor = UIColor.ypWhite
         noButton.titleLabel?.textColor = UIColor.ypBlack
         yesButton.titleLabel?.textColor = UIColor.ypBlack
+        
+        let mainFont = UIFont(name: "YSDisplay-Medium", size: 20)
+        
+        textLabel.font = UIFont(name: "YSDisplay-Bold", size: 23)
+        counterLabel.font = mainFont
+        titleLabel.font = mainFont
+        noButton.titleLabel?.font = mainFont
+        yesButton.titleLabel?.font = mainFont
 
         let currentQuestion = questions[currentQuestionIndex]
         show(quiz: convert(model: currentQuestion))
