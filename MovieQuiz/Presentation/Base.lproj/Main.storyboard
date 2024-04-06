@@ -64,14 +64,6 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Нет">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="Нет">
-                                                            <attributes>
-                                                                <color key="NSColor" name="YS Black"/>
-                                                                <font key="NSFont" size="20" name="YSDisplay-Medium"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
                                                     <color key="titleColor" name="YS Black"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -89,14 +81,6 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Да">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="Да">
-                                                            <attributes>
-                                                                <color key="NSColor" name="YS Black"/>
-                                                                <font key="NSFont" size="20" name="YSDisplay-Medium"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
                                                     <color key="titleColor" name="YS Black"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
