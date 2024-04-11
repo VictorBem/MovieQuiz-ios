@@ -78,13 +78,15 @@ final class MovieQuizViewController: UIViewController {
     }
     
     @IBAction private func noButtonClicked(_ sender: UIButton) {
-        currentButton = sender
+        noButton.isEnabled = false
+        yesButton.isEnabled = false
         showAnswerResult(isCorrect: !questions[currentQuestionIndex].correctAnswer)
     }
     
     
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
-        currentButton = sender
+        noButton.isEnabled = false
+        yesButton.isEnabled = false
         showAnswerResult(isCorrect: questions[currentQuestionIndex].correctAnswer)
     }
     
@@ -102,7 +104,6 @@ final class MovieQuizViewController: UIViewController {
     }
     
     private func showAnswerResult(isCorrect: Bool) {
-        currentButton.isEnabled = false
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
         imageView.layer.cornerRadius = 20
@@ -113,7 +114,8 @@ final class MovieQuizViewController: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.showNextQuestionOrResults()
-            self.currentButton.isEnabled = true
+            self.noButton.isEnabled = true
+            self.yesButton.isEnabled = true
         }
         
     }
