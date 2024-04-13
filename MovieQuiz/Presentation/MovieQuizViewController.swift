@@ -30,6 +30,9 @@ final class MovieQuizViewController: UIViewController {
         let buttonText: String
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var textLabel: UILabel!
