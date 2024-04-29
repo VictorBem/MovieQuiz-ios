@@ -85,26 +85,12 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
     
     
     @IBAction private func noButtonClicked(_ sender: UIButton) {
-        noButton.isEnabled = false
-        yesButton.isEnabled = false
-        
-        guard let currentQuestion = currentQuestion else {
-            return
-        }
-        
-        showAnswerResult(isCorrect: !currentQuestion.correctAnswer)
+        answerGived(answer: false)
     }
     
     
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
-        noButton.isEnabled = false
-        yesButton.isEnabled = false
-        
-        guard let currentQuestion = currentQuestion else {
-            return
-        }
-        
-        showAnswerResult(isCorrect: currentQuestion.correctAnswer)
+        answerGived(answer: true)
     }
     
     private func convert(model: QuizQuestion) -> QuizStepViewModel {
@@ -171,6 +157,22 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
             if let questionFactory = self.questionFactory {
                 questionFactory.requestNextQuestion()
             }
+        }
+    }
+    
+    private func answerGived(answer: Bool) {
+        noButton.isEnabled = false
+        yesButton.isEnabled = false
+        
+        guard let currentQuestion = currentQuestion else {
+            return
+        }
+        
+        if currentQuestion.correctAnswer == answer
+        {
+            showAnswerResult(isCorrect: true)
+        } else {
+            showAnswerResult(isCorrect: false)
         }
     }
 }
