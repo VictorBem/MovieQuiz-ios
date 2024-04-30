@@ -1,7 +1,6 @@
 import UIKit
 
 final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, AlertPresenterDelegate {
-    
     enum FileManagerError: Error {
         case fileDoesntExist
     }
@@ -14,9 +13,14 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
     @IBOutlet private var textLabel: UILabel!
     @IBOutlet private var counterLabel: UILabel!
     @IBOutlet private var titleLabel: UILabel!
-    @IBOutlet var noButton: UIButton!
-    @IBOutlet var yesButton: UIButton!
+    @IBOutlet private var noButton: UIButton!
+    @IBOutlet private var yesButton: UIButton!
     private var currentButton: UIButton!
+    
+    static let yesButtonTag = true
+    static let noButtonTag = false
+    
+    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
     
     private var currentQuestionIndex = 0
     private var correctAnswers = 0
@@ -34,8 +38,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
         
         statisticService = StatisticServiceImplementation()
         
-        let questionFactory = QuestionFactory()
-        questionFactory.delegate = self
+        let questionFactory = QuestionFactory(moviesLoader: MoviesLoader(), delegate: self)
         self.questionFactory = questionFactory
         
         let alertPresenter = AlertPresenter()
@@ -57,7 +60,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
         noButton.titleLabel?.font = mainFont
         yesButton.titleLabel?.font = mainFont
         
-        questionFactory.requestNextQuestion()
+        startLoadData()
     }
     
     // MARK: - QuestionFactoryDelegate
@@ -73,28 +76,35 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
         }
     }
     
+    // MARK: - QuestionFactoryDelegate
+    func didLoadDataFromServer() {
+        hideLoadingIndicator()
+        requestNextQuestion()
+    }
+    
+    // MARK: - QuestionFactoryDelegate
+    func didFailToLoadData(with error: any Error) {
+        showNetworkError(message: error.localizedDescription)
+    }
+    
     // MARK: - AlertPresenterDelegate
     func didAlertPresented() {
         currentQuestionIndex = 0
         correctAnswers = 0
-        
-        if let questionFactory = questionFactory {
-            questionFactory.requestNextQuestion()
-        }
+        requestNextQuestion()
     }
     
-    
     @IBAction private func noButtonClicked(_ sender: UIButton) {
-        answerGived(answer: false)
+        answerGived(answer: MovieQuizViewController.noButtonTag)
     }
     
     
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
-        answerGived(answer: true)
+        answerGived(answer: MovieQuizViewController.yesButtonTag)
     }
     
     private func convert(model: QuizQuestion) -> QuizStepViewModel {
-        return QuizStepViewModel(image: UIImage(named: model.image) ?? UIImage(),
+        return QuizStepViewModel(image: UIImage(data: model.image) ?? UIImage(),
                                  question: model.text,
                                  questionNumber: "\(currentQuestionIndex + 1)/\(questionsAmount)")
     }
@@ -173,6 +183,41 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
             showAnswerResult(isCorrect: true)
         } else {
             showAnswerResult(isCorrect: false)
+        }
+    }
+    
+    private func showLoadingIndicator() {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    private func hideLoadingIndicator() {
+        activityIndicator.isHidden = true
+    }
+    
+    private func showNetworkError(message: String) {
+        hideLoadingIndicator()
+        
+        let alertModel: AlertModel = AlertModel(title: "Network error",
+                                                message: message,
+                                                buttonText: "Попробовать еще раз",
+                                                completion: startLoadData)
+        
+        if let alertPresenter = self.alertPresenter {
+            alertPresenter.presentAlert(model: alertModel)
+        }
+    }
+    
+    private func requestNextQuestion() {
+        if let questionFactory = questionFactory {
+            questionFactory.requestNextQuestion()
+        }
+    }
+    
+    private func startLoadData() {
+        showLoadingIndicator()
+        if let questionFactory = questionFactory {
+            questionFactory.loadData()
         }
     }
 }
