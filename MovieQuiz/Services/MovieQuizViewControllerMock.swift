@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 final class MovieQuizViewControllerMock: MovieQuizViewControllerProtocol {
     func enableOrDisableButtons(disable: Bool) {
     }
