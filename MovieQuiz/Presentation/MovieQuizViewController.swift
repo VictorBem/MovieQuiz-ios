@@ -1,7 +1,6 @@
 import UIKit
 
 final class MovieQuizViewController: UIViewController, MovieQuizViewControllerProtocol {
-    
     enum FileManagerError: Error {
         case fileDoesntExist
     }
@@ -10,25 +9,25 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
         return .lightContent
     }
     
-    @IBOutlet private var imageView: UIImageView!
-    @IBOutlet private var textLabel: UILabel!
-    @IBOutlet private var counterLabel: UILabel!
-    @IBOutlet private var titleLabel: UILabel!
-    @IBOutlet private var noButton: UIButton!
-    @IBOutlet private var yesButton: UIButton!
-    private var currentButton: UIButton!
+    @IBOutlet private var imageView: UIImageView?
+    @IBOutlet private var textLabel: UILabel?
+    @IBOutlet private var counterLabel: UILabel?
+    @IBOutlet private var titleLabel: UILabel?
+    @IBOutlet private var noButton: UIButton?
+    @IBOutlet private var yesButton: UIButton?
+    private var currentButton: UIButton?
     
-    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
-    
-    var alertPresenter: AlertPresenterProtocol?
-    
-    private var presenter: MovieQuizPresenter!
+    @IBOutlet private var activityIndicator: UIActivityIndicatorView?
+    private var presenter: MovieQuizPresenter?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         presenter = MovieQuizPresenter(viewController: self)
+        
+        guard var textLabel = textLabel, var counterLabel = counterLabel, var titleLabel = titleLabel,
+              var noButton = noButton, var yesButton = yesButton else { return }
         
         textLabel.textColor = UIColor.ypWhite
         counterLabel.textColor = UIColor.ypWhite
@@ -46,15 +45,19 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     }
     
     @IBAction private func noButtonClicked(_ sender: UIButton) {
+        guard let presenter = presenter else { return }
         presenter.noButtonClicked()
     }
     
     
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
+        guard let presenter = presenter else { return }
         presenter.yesButtonClicked()
     }
     
     func highlightImageBorder(isCorrectAnswer: Bool) {
+        guard var imageView = imageView else { return }
+        
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
         imageView.layer.cornerRadius = 20
@@ -62,25 +65,29 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     }
     
     func showLoadingIndicator() {
+        guard var activityIndicator = activityIndicator else { return }
+        
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
     }
     
     func hideLoadingIndicator() {
+        guard var activityIndicator = activityIndicator else { return }
+        
         activityIndicator.isHidden = true
     }
     
     func enableOrDisableButtons(disable: Bool) {
-        if disable {
-            noButton.isEnabled = false
-            yesButton.isEnabled = false
-        } else {
-            noButton.isEnabled = true
-            yesButton.isEnabled = true
-        }
+        guard var noButton = noButton, var yesButton = yesButton else { return }
+        
+        noButton.isEnabled = !disable
+        yesButton.isEnabled = !disable
     }
 
     func show(quiz step: QuizStepViewModel) {
+        guard var textLabel = textLabel, var counterLabel = counterLabel, 
+                var imageView = imageView else { return }
+    
         imageView.image = step.image
         imageView.layer.borderWidth = 0
         textLabel.text = step.question
@@ -101,7 +108,6 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
 
         self.present(alert, animated: true, completion: nil)
     }
-    
 }
 
 /*

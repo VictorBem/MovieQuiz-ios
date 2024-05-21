@@ -53,27 +53,27 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         }
     }
     
-    func isLastQuestion() -> Bool {
+    private func isLastQuestion() -> Bool {
         currentQuestionIndex == questionsAmount - 1
     }
     
-    func resetQuestionIndex () {
+    private func resetQuestionIndex () {
         currentQuestionIndex = 0
     }
     
-    func switchToNextQuestion() {
+    private func switchToNextQuestion() {
         currentQuestionIndex += 1
     }
     
-    func resetCorrectAnswers() {
+    private func resetCorrectAnswers() {
         correctAnswers = 0
     }
     
-    func increaseCorrectAnswers() {
+    private func increaseCorrectAnswers() {
         correctAnswers += 1
     }
     
-    func convert(model: QuizQuestion) -> QuizStepViewModel {
+    private func convert(model: QuizQuestion) -> QuizStepViewModel {
         return QuizStepViewModel(image: UIImage(data: model.image) ?? UIImage(),
                                  question: model.text,
                                  questionNumber: "\(currentQuestionIndex + 1)/\(questionsAmount)")
@@ -102,7 +102,7 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         }
     }
     
-    func proceedToNextQuestionOrResults() {
+    private func proceedToNextQuestionOrResults() {
         if isLastQuestion() {
             if var statisticService = statisticService {
                 let lastAccurance = statisticService.totalAccuracy
@@ -138,7 +138,7 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         }
     }
     
-    func requestNextQuestion() {
+    private func requestNextQuestion() {
         if let questionFactory = questionFactory {
             questionFactory.requestNextQuestion()
         }
@@ -157,13 +157,13 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         viewController.show(quiz: alertModel)
     }
     
-    func restartGame() {
+    private func restartGame() {
         resetQuestionIndex()
         resetCorrectAnswers()
         requestNextQuestion()
     }
     
-    func proceedWithAnswer(isCorrect: Bool) {
+    private func proceedWithAnswer(isCorrect: Bool) {
         guard let viewController = viewController else { return }
         viewController.highlightImageBorder(isCorrectAnswer: isCorrect)
         
