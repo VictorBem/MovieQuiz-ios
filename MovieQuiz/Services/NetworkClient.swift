@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NetworkClient {
+struct NetworkClient: NetworkRouting {
     private static let okRequest = 200
     private static let multipleChoicesRequest = 300
     
