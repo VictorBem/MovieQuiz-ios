@@ -26,8 +26,8 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
         
         presenter = MovieQuizPresenter(viewController: self)
         
-        guard var textLabel = textLabel, var counterLabel = counterLabel, var titleLabel = titleLabel,
-              var noButton = noButton, var yesButton = yesButton else { return }
+        guard let textLabel = textLabel, let counterLabel = counterLabel, let titleLabel = titleLabel,
+              let noButton = noButton, let yesButton = yesButton else { return }
         
         textLabel.textColor = UIColor.ypWhite
         counterLabel.textColor = UIColor.ypWhite
@@ -56,7 +56,7 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     }
     
     func highlightImageBorder(isCorrectAnswer: Bool) {
-        guard var imageView = imageView else { return }
+        guard let imageView = imageView else { return }
         
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
@@ -65,28 +65,27 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     }
     
     func showLoadingIndicator() {
-        guard var activityIndicator = activityIndicator else { return }
+        guard let activityIndicator = activityIndicator else { return }
         
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
     }
     
     func hideLoadingIndicator() {
-        guard var activityIndicator = activityIndicator else { return }
+        guard let activityIndicator = activityIndicator else { return }
         
         activityIndicator.isHidden = true
     }
     
     func enableOrDisableButtons(disable: Bool) {
-        guard var noButton = noButton, var yesButton = yesButton else { return }
+        guard let noButton = noButton, let yesButton = yesButton else { return }
         
         noButton.isEnabled = !disable
         yesButton.isEnabled = !disable
     }
 
     func show(quiz step: QuizStepViewModel) {
-        guard var textLabel = textLabel, var counterLabel = counterLabel, 
-                var imageView = imageView else { return }
+        guard let textLabel = textLabel, let counterLabel = counterLabel,let imageView = imageView else { return }
     
         imageView.image = step.image
         imageView.layer.borderWidth = 0
